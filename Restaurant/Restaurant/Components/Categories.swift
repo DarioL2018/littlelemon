@@ -24,7 +24,6 @@ struct Categories: View {
                     ForEach(categories, id: \.self) { text in
                         Button(action: {
                             selectedFilter = (selectedFilter == text) ? nil : text
-                            //onGroupUpdate(selectedFilter ?? "")
                         }) {
                             Text(text.capitalized)
                                 .font(.system(size: 16, weight: .medium))

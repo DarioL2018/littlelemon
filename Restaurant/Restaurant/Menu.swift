@@ -11,6 +11,7 @@ struct Menu: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var searchText: String = ""
     @State private var selectedCategory: String? = nil
+    @State private var reloadTrigger = false
 
     var body: some View {
         VStack{
@@ -119,6 +120,7 @@ struct Menu: View {
                 .listStyle(.plain)
                 
             }
+            .id(reloadTrigger)
             
             //.frame(maxWidth: .infinity, alignment: .leading)
             //.padding(.horizontal, -20)
@@ -178,10 +180,12 @@ struct Menu: View {
                     dish.category = menuElement.category
                 }
                 try? self.viewContext.save()
+                reloadTrigger.toggle()
             }
         }
         
         task.resume()
+        
         
     }
 }
