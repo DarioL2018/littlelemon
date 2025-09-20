@@ -17,8 +17,11 @@ struct Menu: View {
     var body: some View {
         
         VStack{
+            /* ------------- HEADER --------------- */
             TopBarHome(selectedTab: $selectedTab)
                 .padding(.bottom, -10)
+            
+            /* ------------- HERO --------------- */
             VStack {
                 Text("Little Lemon")
                     .font(.system(size: 64, weight: .medium))
@@ -78,11 +81,13 @@ struct Menu: View {
             
             .background(Color(red: 0.286, green: 0.369, blue: 0.341))
             
+            /* ------------- MENU BREAKDOWN --------------- */
             Categories(categories: ["Starters", "Mains", "Desserts"],  selectedFilter: $selectedCategory)
                 .padding(.horizontal)
                 .padding(.top, 10)
                 .padding(.bottom, 10)
             
+            /* ------------- FOOD MENU --------------- */
             FetchedObjects(
                 predicate:buildPredicate(),
                 sortDescriptors: buildSortDescriptors()
