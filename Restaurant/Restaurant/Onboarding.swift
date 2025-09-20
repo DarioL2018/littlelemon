@@ -39,7 +39,7 @@ struct Onboarding: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.vertical, 20)
                     
-                    Text("First Name")
+                    Text("First Name *")
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, -10)
@@ -51,7 +51,7 @@ struct Onboarding: View {
                                 .stroke(Color.black, lineWidth: 1)
                         )
                     
-                    Text("Last Name")
+                    Text("Last Name *")
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 30)
@@ -65,7 +65,7 @@ struct Onboarding: View {
                         )
                         
                     
-                    Text("Email")
+                    Text("Email *")
                         .font(.system(size: 18, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 30)
