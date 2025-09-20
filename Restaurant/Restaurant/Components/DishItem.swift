@@ -31,7 +31,10 @@ struct DishItem: View {
                                 .frame(maxWidth: UIScreen.main.bounds.width * 0.75, alignment: .leading)
                                 .padding(.vertical, 10)
 
-                            Text(dish.price)
+                            Text(String(
+                                    format: "$%.2f",
+                                    Double(dish.price) ?? 0.0 
+                                ))
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.2))
                         }

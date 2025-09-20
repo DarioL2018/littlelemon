@@ -20,11 +20,14 @@ struct UserProfile: View {
     @State var isPasswordChanges = UserDefaults.standard.bool(forKey: "kPasswordChanges")
     @State var isSpecialOffers = UserDefaults.standard.bool(forKey: "kSpecialOffers")
     @State var isNewsletter = UserDefaults.standard.bool(forKey: "kNewsletter")
+    @Binding var selectedTab: Int!
     
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
         VStack {
+            TopBarUserProfile(selectedTab: $selectedTab)
+                .padding(.bottom, 10)
             Text("Personal information")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -104,6 +107,10 @@ struct UserProfile: View {
                     .padding(.bottom, -10)
                 
                 TextField("Email", text: $email)
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .font(.system(size: 15))
                     .padding(.vertical, 10)
                     .padding(.horizontal, 8)
@@ -117,6 +124,10 @@ struct UserProfile: View {
                     .padding(.bottom, -10)
                 
                 TextField("Phone Number", text: $phone)
+                    .keyboardType(.phonePad)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .font(.system(size: 15))
                     .padding(.vertical, 10)
                     .padding(.horizontal, 8)
@@ -140,6 +151,7 @@ struct UserProfile: View {
             }
             Button(action: {
                 UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                lougout()
                 presentation.wrappedValue.dismiss()
             }
                 ) {
@@ -216,6 +228,17 @@ struct UserProfile: View {
         isSpecialOffers = UserDefaults.standard.bool(forKey: "kSpecialOffers")
         isNewsletter = UserDefaults.standard.bool(forKey: "kNewsletter")
     }
+    
+    func lougout() {
+        UserDefaults.standard.set("", forKey: "kFirstName")
+        UserDefaults.standard.set("", forKey: "kLastName")
+        UserDefaults.standard.set("", forKey: "kEmail")
+        UserDefaults.standard.set("", forKey: "kPhone")
+        UserDefaults.standard.set(false, forKey: "kOrderStatuses")
+        UserDefaults.standard.set(false, forKey: "kPasswordChanges")
+        UserDefaults.standard.set(false, forKey: "kSpecialOffers")
+        UserDefaults.standard.set(false, forKey: "kNewsletter")
+    }
 }
 
 
@@ -245,5 +268,5 @@ struct CustomCheckBox: View {
 
 
 #Preview {
-    UserProfile()
+    UserProfile(selectedTab: .constant(0))
 }

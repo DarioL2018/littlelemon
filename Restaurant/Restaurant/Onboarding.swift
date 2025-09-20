@@ -71,6 +71,10 @@ struct Onboarding: View {
                         .padding(.top, 30)
                         .padding(.bottom, -10)
                     TextField("Email", text: $email)
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .textInputAutocapitalization(.never)
                         .padding(.vertical, 12)
                         .padding(.horizontal, 8)
                         .overlay(
@@ -85,6 +89,9 @@ struct Onboarding: View {
                                     UserDefaults.standard.set(email, forKey: kEmail)
                                     isLoggedIn = true
                                     UserDefaults.standard.set(true, forKey: kIsLoggedIn)
+                                    firstName = ""
+                                    lastName = ""
+                                    email = ""
                                 }
                             }
                     ) {

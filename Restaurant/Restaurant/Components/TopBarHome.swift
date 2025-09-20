@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TopBarHome: View {
+    @Binding var selectedTab: Int!
     var body: some View {
         HStack{
             Spacer()
@@ -17,6 +18,9 @@ struct TopBarHome: View {
             Image("profile-image-placeholder")
                 .resizable()
                 .frame(width: 56, height: 56)
+                .onTapGesture {
+                    selectedTab = 1
+                }
             
             
         }
@@ -28,5 +32,5 @@ struct TopBarHome: View {
 }
 
 #Preview {
-    TopBarHome()
+    TopBarHome(selectedTab: .constant(0))
 }

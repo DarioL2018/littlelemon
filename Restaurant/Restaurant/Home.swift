@@ -9,24 +9,27 @@ import SwiftUI
 
 struct Home: View {
     let persistence = PersistenceController.shared
+    @State private var selectedTab: Int! = 0
     
     var body: some View {
         VStack(spacing: 0) {
-            TopBarHome()
-            TabView {
-                Menu()
+            
+            TabView(selection: $selectedTab) {
+                Menu(selectedTab: $selectedTab)
                     .font(.title)
                     .tabItem({
                         Label("Menu", systemImage: "list.dash")
                     })
                     .environment(\.managedObjectContext, persistence.container.viewContext)
+                    .tag(0)
                 //.frame(maxHeight: 200)
                 
-                UserProfile()
+                UserProfile(selectedTab: $selectedTab)
                     .font(.title)
                     .tabItem({
                         Label("Profile", systemImage: "square.and.pencil")
                     })
+                    .tag(1)
             }
             .navigationBarBackButtonHidden(true)
         }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Categories: View {
     let categories: [String]
-    //let onGroupUpdate: (String) -> Void
     @Binding var selectedFilter: String?
 
     var body: some View {
@@ -27,7 +26,7 @@ struct Categories: View {
                         }) {
                             Text(text.capitalized)
                                 .font(.system(size: 16, weight: .medium))
-                                .foregroundColor(Color(red: 0.286, green: 0.369, blue: 0.341))
+                                .foregroundColor(selectedFilter == text ? Color.white : Color(red: 0.286, green: 0.369, blue: 0.341))
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 16)
                                 .background(
@@ -44,6 +43,6 @@ struct Categories: View {
     }
 }
 
-/*#Preview {
-    Categories(categories: ["VEGETEBLES", "FRUITS"])
-}*/
+#Preview {
+    Categories(categories: ["VEGETEBLES", "FRUITS"], selectedFilter: .constant("VEGETEBLES"))
+}

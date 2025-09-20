@@ -12,9 +12,13 @@ struct Menu: View {
     @State var searchText: String = ""
     @State private var selectedCategory: String? = nil
     @State private var reloadTrigger = false
+    @Binding var selectedTab: Int!
 
     var body: some View {
+        
         VStack{
+            TopBarHome(selectedTab: $selectedTab)
+                .padding(.bottom, -10)
             VStack {
                 Text("Little Lemon")
                     .font(.system(size: 64, weight: .medium))
@@ -191,5 +195,5 @@ struct Menu: View {
 }
 
 #Preview {
-    Menu()
+    Menu(selectedTab: .constant(0))
 }
